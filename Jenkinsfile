@@ -16,9 +16,11 @@ pipeline {
                 script {
                     switch(params.resource) {
                         case 'Loadbalancer':
+                            cleanWs()
                             checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/rahulkumarmohanty/az_loadbalancer.git']])
                         break
                         case 'CDN':
+                            cleanWs()
                             checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'SanthaID', url: 'https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/az_cdn']]) 
                         break
                     }
