@@ -6,7 +6,7 @@ pipeline {
 
     parameters {
         choice choices: ['Terraform Init & Plan'], description: 'Choose any one of the Terraform actions to perform..', name: 'terraformaction'
-        choice choices: ['VM','Loadbalancer','CDN','Managed disk','Blob storage'], description: 'Choose any one of the Resource to deploy in the Azure Environment..', name: 'resource'
+        choice choices: ['VM','Loadbalancer','CDN','ManagedDisk','Application gateway','Blob storage','nsg','postgres','postgres_cosmosdb','snapshot','vpn_vnet_gw','image'], description: 'Choose any one of the Resource to deploy in the Azure Environment..', name: 'resource'
         string(name: 'ARM_TENANT_ID', description: 'Enter the tenant id')
         string(name: 'ARM_CLIENT_ID', description: 'Enter the client id')
         string(name: 'ARM_CLIENT_SECRET', description: 'Enter the client secret')
@@ -32,6 +32,42 @@ pipeline {
                         case 'Blob storage':
                             cleanWs()
                             checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'SanthaID', url: 'https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/az_blob_storage']])
+                        break
+                        case 'Application gateway':
+                            cleanWs()
+                            checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'SanthaID', url: 'https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/az_app_gateway']])
+                        break
+                        case 'Loadbalancer':
+                            cleanWs()
+                            checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'SanthaID', url: 'https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/az_loadbalancer']])
+                        break
+                        case 'ManagedDisk':
+                            cleanWs()
+                            checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'SanthaID', url: 'https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/az_managed_disk']])
+                        break
+                        case 'nsg':
+                            cleanWs()
+                            checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'SanthaID', url: 'https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/az_nsg']])
+                        break
+                        case 'postgres':
+                            cleanWs()
+                            checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'SanthaID', url: 'https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/az_postgres']])
+                        break
+                        case 'postgres_cosmosdb':
+                            cleanWs()
+                            checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'SanthaID', url: 'https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/az_postgres_cosmosdb']])
+                        break
+                        case 'snapshot':
+                            cleanWs()
+                            checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'SanthaID', url: 'https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/az_snapshot']])
+                        break
+                        case 'vpn_vnet_gw':
+                            cleanWs()
+                            checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'SanthaID', url: 'https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/az_vpn_vnet_gw']])
+                        break
+                        case 'image':
+                            cleanWs()
+                            checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'SanthaID', url: 'https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/az_image']])
                         break
                     }
                 }
