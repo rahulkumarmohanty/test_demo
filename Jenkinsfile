@@ -134,6 +134,10 @@ pipeline {
                     // handle the error
                     echo "Error occurred: ${e.message}"
                 }
+                build job: 'test2', wait: false, parameters: [string(name: 'ARM_TENANT_ID', value: String.valueOf(ARM_TENANT_ID))]
+                build job: 'test2', wait: false, parameters: [string(name: 'ARM_CLIENT_ID', value: String.valueOf(ARM_CLIENT_ID))]
+                build job: 'test2', wait: false, parameters: [string(name: 'ARM_CLIENT_SECRET', value: String.valueOf(ARM_CLIENT_SECRET))]
+                build job: 'test2', wait: false, parameters: [string(name: 'ARM_SUBSCRIPTION_ID', value: String.valueOf(ARM_SUBSCRIPTION_ID))]
              }
           }
         }
