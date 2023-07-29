@@ -21,9 +21,9 @@ pipeline {
             steps {
                 script {
                     switch(params.resource) {
-                        case 'Loadbalancer':
+                        case 'VM':
                             cleanWs()
-                            checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/rahulkumarmohanty/az_loadbalancer.git']])
+                            checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'SanthaID', url: 'https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/az_vm']])
                         break
                         case 'CDN':
                             cleanWs()
