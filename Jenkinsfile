@@ -64,6 +64,9 @@ pipeline {
                         case 'vpn_vnet_gw':
                             cleanWs()
                             checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'SanthaID', url: 'https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/az_vpn_vnet_gw']])
+                            def inputFile = input message: 'Upload file', parameters: [file(name: 'cert')]
+                            new hudson.FilePath(new File("$workspace/cert")).copyFrom(inputFile)
+                            inputFile.delete()
                         break
                         case 'image':
                             cleanWs()
