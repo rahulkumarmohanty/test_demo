@@ -7,10 +7,10 @@ pipeline {
     parameters {
         choice choices: ['Terraform Init & Plan'], description: 'Choose any one of the Terraform actions to perform..', name: 'terraformaction'
         choice choices: ['VM','Loadbalancer','CDN','ManagedDisk','Application gateway','Blob storage','nsg','postgres','postgres_cosmosdb','snapshot','vpn_vnet_gw','image'], description: 'Choose any one of the Resource to deploy in the Azure Environment..', name: 'resource'
-        string(name: 'ARM_TENANT_ID', default: '73306657-9352-491f-8fcc-40bf911a22e9', description: 'Enter the tenant id')
-        string(name: 'ARM_CLIENT_ID', default: '8599eb49-abbc-416f-aeed-1c33b31fe714', description: 'Enter the client id')
-        string(name: 'ARM_CLIENT_SECRET', default: 'yrr8Q~B0yFyo3ZG58dDK87Jgx1VEEZUadi_1bcdG', description: 'Enter the client secret')
-        string(name: 'ARM_SUBSCRIPTION_ID', default: 'd4d1547b-1e0c-4d70-9407-79b556cb3687', description: 'Enter the subscription id')
+        string(name: 'ARM_TENANT_ID', defaultValue: '73306657-9352-491f-8fcc-40bf911a22e9', description: 'Enter the tenant id')
+        string(name: 'ARM_CLIENT_ID', defaultValue: '8599eb49-abbc-416f-aeed-1c33b31fe714', description: 'Enter the client id')
+        string(name: 'ARM_CLIENT_SECRET', defaultValue: 'yrr8Q~B0yFyo3ZG58dDK87Jgx1VEEZUadi_1bcdG', description: 'Enter the client secret')
+        string(name: 'ARM_SUBSCRIPTION_ID', defaultValue: 'd4d1547b-1e0c-4d70-9407-79b556cb3687', description: 'Enter the subscription id')
         string(name: 'tfvars',description: 'Enter the tfvars file name')
         string(name: 'account',description: 'Enter the account name')
     }
