@@ -97,9 +97,12 @@ pipeline {
 
         stage('Terraform Initialize') {
             steps {
-                sh 'terraform init --backend-config=backend-conffinal.tfvars -reconfigure'
-                if(params.resource == 'port addition'){
-                    sh 'terraform import ${nsgid}'
+                script {
+                    sh 'terraform init --backend-config=backend-conffinal.tfvars -reconfigure'
+                    if(params.resource == 'port addition')
+                    {
+                        sh 'terraform import ${nsgid}'
+                    }
                 }
             }
         }
