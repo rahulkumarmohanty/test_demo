@@ -13,6 +13,7 @@ pipeline {
         string(name: 'ARM_SUBSCRIPTION_ID', defaultValue: 'd4d1547b-1e0c-4d70-9407-79b556cb3687', description: 'Enter the subscription id')
         string(name: 'tfvars',description: 'Enter the tfvars file name')
         string(name: 'account',description: 'Enter the account name')
+        string(name: 'nsgid',description: 'Enter the nsg id')
     }
 
     stages {
@@ -68,6 +69,11 @@ pipeline {
                         case 'image':
                             cleanWs()
                             checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'SanthaID', url: 'https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/az_image']])
+                        break
+                        case 'port addition':
+                            cleanWs()
+                            checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'SanthaID', url: 'https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/az_port_addition']])
+                            sh 'terraform import ${nsgid}'
                         break
                     }
                 }
